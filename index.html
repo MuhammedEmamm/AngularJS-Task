@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head> 
+    <title>GitHub's Users</title>
+    <link type="text/css" rel="stylesheet" href="Main.css" /> 
+    </head>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+    </script>
+    <body background ="http://www.wallpapersbyte.com/wp-content/uploads/2015/06/Minecraft-Whole-Planet-Cube-Cubes-World-WallpapersByte-com-1920x1080.jpg" > 
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>Today's welcome message is:</p>
+
+<h1 class="Tit">GitHub Users</h1>
+<ul class="Names">
+  <li ng-repeat="x in myData">
+      {{  x.id  + ' - ' + x.login}}
+        <div class = "Avatar">
+      <img ng-src={{x.avatar_url}}/></div>  
+</li>
+</ul>
+
+</div>
+
+<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http({
+    method : "GET",
+    url : "https://api.github.com/users?since=0"
+  }).then(function mySucces(response) {
+      $scope.myData = response.data;
+    }, function myError(response) {
+      $scope.myData = response.statusText;
+  });
+});
+</script>
+    </body>
+</html>
