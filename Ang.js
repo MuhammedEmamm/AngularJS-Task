@@ -2,7 +2,7 @@ var app = angular.module('myApp', ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/:username", {
-        templateUrl :"/Task1/ext.html"
+        templateUrl :"ext.html"
     });
 });
 app.controller('myCtrl', function($scope, $http) {
